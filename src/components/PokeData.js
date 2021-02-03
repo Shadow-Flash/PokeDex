@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "../api/poke";
 import PokeCard from "./PokeCard";
 
@@ -52,16 +53,19 @@ const PokeData = () => {
 
   return (
     <div className="ui container">
-      <h1 className='ui red header'>PokeDex</h1>
+      <h1 className="ui red header">PokeDex</h1>
+      <Link to="/home/favorites">
       <div
         className="ui animated fade orange button right floated"
         tabindex="0"
       >
-        <div class="visible content">Favorites</div>
-        <div class="hidden content">
-          <i class="star icon"></i>
-        </div>
+        
+          <div class="visible content">Favorites</div>
+          <div class="hidden content">
+            <i class="star icon"></i>
+          </div>
       </div>
+      </Link>
       {wait ? (
         <div className="ui active inverted dimmer">
           <div className="ui large text loader">Wait Pokemon's Loading</div>
