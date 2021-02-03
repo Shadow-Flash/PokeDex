@@ -9,7 +9,7 @@ const PokeCard = ({ pokemon }) => {
             <img src={pokemon.sprites.front_default} />
           </div>
           <div className="content">
-            <i class="right floated star icon"></i>
+            <i className="right floated star icon"></i>
             <a className="header">{pokemon.name}</a>
           </div>
         </div>
