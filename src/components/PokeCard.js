@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const PokeCard = ({ pokemon }) => {
   return (
@@ -10,7 +11,7 @@ const PokeCard = ({ pokemon }) => {
           </div>
           <div className="content">
             <i className="right floated star icon"></i>
-            <a className="header">{pokemon.name}</a>
+            <Link to="/home/{pokemon.name}/details" className="header">{pokemon.name.toUpperCase()}</Link>
           </div>
         </div>
       </div>

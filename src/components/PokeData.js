@@ -52,7 +52,16 @@ const PokeData = () => {
 
   return (
     <div className="ui container">
-      <h1>PokeDex</h1>
+      <h1 className='ui red header'>PokeDex</h1>
+      <div
+        className="ui animated fade orange button right floated"
+        tabindex="0"
+      >
+        <div class="visible content">Favorites</div>
+        <div class="hidden content">
+          <i class="star icon"></i>
+        </div>
+      </div>
       {wait ? (
         <div className="ui active inverted dimmer">
           <div className="ui large text loader">Wait Pokemon's Loading</div>
@@ -65,11 +74,11 @@ const PokeData = () => {
             })}
           </div>
           <div className="ui grid container">
-            <a className="circular ui tiny icon button " onClick={prevUrl}>
+            <a className="circular ui tiny icon red button " onClick={prevUrl}>
               <i className="left arrow icon"></i>
             </a>
             <a
-              className=" circular ui tiny right icon button"
+              className=" circular ui tiny right icon red button"
               onClick={nextUrl}
             >
               <i className="right arrow icon"></i>
