@@ -7,7 +7,7 @@ const PokeCard = ({ pokemon }) => {
       <div className="ui stackable cards">
         <div className="card">
           <div className="ui image">
-            <img src={pokemon.sprites.front_default} />
+            <img src={pokemon.sprites.front_default} alt=''/>
           </div>
           <div className="content">
             <Link to={`/home/${pokemon.name}/details`} className="header">

@@ -5,12 +5,12 @@ import { allPokemons } from "../actions";
 import PokeCard from "./PokeCard";
 
 const PokeData = () => {
-  const pokemons = useSelector((state) => state.pokeReducer.data);
   const dispatch = useDispatch();
+  const pokemons = useSelector((state) => state.pokeReducer.data);
   const nextPage = useSelector((state) => state.pokeReducer.nextUrl);
   const prevPage = useSelector((state) => state.pokeReducer.prevUrl);
   const loading = useSelector((state) => state.pokeReducer.loading);
-  useEffect(async () => {
+  useEffect(() => {
     dispatch(
       allPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10")
     );
@@ -19,9 +19,8 @@ const PokeData = () => {
   const nextUrl = () => {
     if (nextPage) {
       dispatch(allPokemons(nextPage));
-    }
-    else{
-      return
+    } else {
+      return;
     }
   };
 
@@ -39,7 +38,7 @@ const PokeData = () => {
       <Link to="/home/favorites">
         <div
           className="ui animated fade orange button right floated"
-          tabindex="0"
+          tabIndex="0"
         >
           <div className="visible content">Favorites</div>
           <div className="hidden content">
@@ -59,16 +58,17 @@ const PokeData = () => {
             })}
           </div>
           <div className="ui grid container">
-            <a className="circular ui tiny icon red button" onClick={prevUrl}>
+            <div className="circular ui tiny icon red button" onClick={prevUrl}>
               <i className="left arrow icon"></i>
-            </a>
-            <a
-              className=" circular ui tiny right icon red button"
+            </div>
+            <div
+              className="circular ui tiny right icon red button"
               onClick={nextUrl}
             >
               <i className="right arrow icon"></i>
-            </a>
+            </div>
           </div>
+          <p></p>
         </>
       )}
     </div>

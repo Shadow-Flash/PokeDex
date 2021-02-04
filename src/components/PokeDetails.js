@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsOfPokemon } from "../actions";
+import {Link} from "react-router-dom";
 
 const PokeDetails = (props) => {
   const dispatch = useDispatch();
@@ -20,37 +21,65 @@ const PokeDetails = (props) => {
     <div className="ui container">
       <p></p>
       <h1 className="ui red header">{name.toUpperCase()}</h1>
-      <div className="ui small images">
-        <img class="ui medium image" src={image.front_default} />
-        <img class="ui medium image" src={image.back_default} />
-      </div>
-      <div className='ui inverted segment'>
-          <p></p>
-          <div className='ui grid'>
-          <h3 className="ui red inverted header">Experience : </h3>
-            <p>{exp}</p>
+      {loading ? (
+        <div className="ui active inverted dimmer">
+          <div className="ui large text loader">Wait {name} Loading</div>
+        </div>
+      ) : (
+        <>
+          <div className="ui small images">
+            <img class="ui medium image" src={image.front_default} />
+            <img class="ui medium image" src={image.back_default} />
           </div>
-          <div className='ui grid'>
-          <h3 className="ui red inverted header">Abilities : </h3>
-           {ability.map(a => <p>{a}</p>)}
+          <div className="ui inverted segment">
+            <p></p>
+            <div className="ui grid">
+              <h3 className="ui red inverted header">Experience : </h3>
+              <p>{exp}</p>
+            </div>
+            <div className="ui grid">
+              <h3 className="ui red inverted header">Abilities : </h3>
+              {ability.map((a) => (
+                <p>{a}</p>
+              ))}
+            </div>
+            <div className="ui grid">
+              <h3 className="ui red inverted header">Type : </h3>
+              {type.map((t) => (
+                <p>{t}</p>
+              ))}
+            </div>
+            <div className="ui grid">
+              <h3 className="ui red inverted header">Moves : </h3>
+              {moves.map((m) => (
+                <p>{m}</p>
+              ))}
+            </div>
+            <div className="ui grid">
+              <h3 className="ui red inverted header">Height : </h3>
+              <p>{height}</p>
+            </div>
+            <div className="ui grid">
+              <h3 className="ui red inverted header">Weight : </h3>
+              <p>{weight}</p>
+            </div>
           </div>
-          <div className='ui grid'>
-          <h3 className="ui red inverted header">Type : </h3>
-            {type.map(t => <p>{t}</p>)}
+          <div className="ui animated fade orange button" tabIndex="0">
+            <div className="visible content">Add to Favorite</div>
+            <div className="hidden content">
+              <i className="ui star icon" />
+            </div>
           </div>
-          <div className='ui grid'>
-          <h3 className="ui red inverted header">Moves : </h3>
-            {moves.map(m => <p>{m}</p>)}
-          </div>
-          <div className='ui grid'>
-          <h3 className="ui red inverted header">Height : </h3>
-            <p>{height}</p>
-          </div>
-          <div className='ui grid'>
-          <h3 className="ui red inverted header">Weight : </h3>
-            <p>{weight}</p>
-          </div>
-      </div>
+          <Link to="/home">
+            <div className="ui animated blue button" tabIndex="0">
+              <div className="visible content">Back</div>
+              <div className="hidden content">
+                <i className="left arrow icon"></i>
+              </div>
+            </div>
+          </Link>
+        </>
+      )}
     </div>
   );
 };
