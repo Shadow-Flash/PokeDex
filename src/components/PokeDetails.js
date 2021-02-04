@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { detailsOfPokemon } from "../actions";
+import { detailsOfPokemon, addToFavorites } from "../actions";
 import {Link} from "react-router-dom";
 
 const PokeDetails = (props) => {
@@ -17,6 +17,11 @@ const PokeDetails = (props) => {
   useEffect(() => {
     dispatch(detailsOfPokemon(props.match.params.name));
   }, []);
+
+  const addToFavorite = () => {
+      dispatch(addToFavorites(props.match.params.name));
+  }
+
   return (
     <div className="ui container">
       <p></p>
@@ -28,8 +33,8 @@ const PokeDetails = (props) => {
       ) : (
         <>
           <div className="ui small images">
-            <img class="ui medium image" src={image.front_default} />
-            <img class="ui medium image" src={image.back_default} />
+            <img className="ui medium image" src={image.front_default} />
+            <img className="ui medium image" src={image.back_default} />
           </div>
           <div className="ui inverted segment">
             <p></p>
@@ -65,9 +70,9 @@ const PokeDetails = (props) => {
             </div>
           </div>
           <div className="ui animated fade orange button" tabIndex="0">
-            <div className="visible content">Add to Favorite</div>
+            <div className="visible content" onClick={addToFavorite}>Add to Favorite</div>
             <div className="hidden content">
-              <i className="ui star icon" />
+              <i className="ui star icon" onClick={addToFavorite}/>
             </div>
           </div>
           <Link to="/home">
