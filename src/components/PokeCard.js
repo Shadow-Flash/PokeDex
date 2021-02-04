@@ -11,8 +11,7 @@ const PokeCard = ({ pokemon }) => {
             <img src={pokemon.sprites.front_default} />
           </div>
           <div className="content">
-            <i className="right floated star icon"></i>
-            <Link to="/home/pokemon.name/details" className="header">{pokemon.name.toUpperCase()}</Link>
+            <Link to={`/home/${pokemon.name}/details`} className="header">{pokemon.name.toUpperCase()}</Link>
           </div>
         </div>
       </div>

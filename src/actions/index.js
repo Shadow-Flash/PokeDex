@@ -1,4 +1,4 @@
-import axios from "../api/poke";
+import axios from "axios";
 import {
   ALL,
   DETAILS,
@@ -7,8 +7,12 @@ import {
   DELETE_FAVORITE,
 } from "./types";
 
-export const allPokemons = () => async (dispatch) => {
-  const res = await axios.get();
+export const allPokemons = (url) => async (dispatch) => {
+  dispatch({
+    type: ALL,
+    payload: { loading: true },
+  });
+  const res = await axios.get(url);
   let nextPage = res.data.next;
   let prevPage = res.data.previous;
   let pokemonData = await Promise.all(
@@ -23,6 +27,7 @@ export const allPokemons = () => async (dispatch) => {
       data: pokemonData,
       next: nextPage,
       prev: prevPage,
+      loading: false,
     },
   });
 };
@@ -33,19 +38,19 @@ export const detailsOfPokemon = () => {
   };
 };
 
-export default addToFavorites = () => {
+export const addToFavorites = () => {
   return {
     type: ADD_FAVORITE,
   };
 };
 
-export default deleteFromFavorites = () => {
+export const deleteFromFavorites = () => {
   return {
     type: DELETE_FAVORITE,
   };
 };
 
-export default showMyFavorites = () => {
+export const showMyFavorites = () => {
   return {
     type: SHOW_FAVORITES,
   };

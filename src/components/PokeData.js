@@ -1,73 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
-import axios from "../api/poke";
+import { allPokemons } from "../actions";
 import PokeCard from "./PokeCard";
 
 const PokeData = () => {
-  const [pokemons, setPokemon] = useState([]);
-  const [nextPage, setNextPage] = useState("");
-  const [prevPage, setPrevPage] = useState("");
-  const [wait, setWait] = useState(true);
-
-  useEffect(() => {
-    const getPokemon = async () => {
-      const response = await axios.get();
-      setNextPage(response.data.next);
-      setPrevPage(response.data.previous);
-      await fetchPokemon(response.data.results);
-      setWait(false);
-    };
-    getPokemon();
+  const pokemons = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+  const nextPage = useSelector((state) => state.nextUrl);
+  const prevPage = useSelector((state) => state.prevUrl);
+  const loading = useSelector((state) => state.loading);
+  useEffect(async () => {
+    dispatch(
+      allPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10")
+    );
   }, []);
 
-  const fetchPokemon = async (data) => {
-    let pokemonData = await Promise.all(
-      data.map(async (pokemon) => {
-        let pokemonRecord = await axios.get(pokemon.url);
-        return pokemonRecord.data;
-      })
-    );
-    setPokemon(pokemonData);
+  const nextUrl = () => {
+    if (nextPage) {
+      dispatch(allPokemons(nextPage));
+    }
+    else{
+      return
+    }
   };
 
-  const nextUrl = async () => {
-    setWait(true);
-    await axios.get(nextPage).then(async (ndata) => {
-      await fetchPokemon(ndata.data.results);
-      setNextPage(ndata.data.next);
-      setPrevPage(ndata.data.previous);
-      setWait(false);
-    });
-  };
-
-  const prevUrl = async () => {
-    if (!prevPage) return;
-    setWait(true);
-    await axios.get(prevPage).then(async (pdata) => {
-      await fetchPokemon(pdata.data.results);
-      setNextPage(pdata.data.next);
-      setPrevPage(pdata.data.previous);
-      setWait(false);
-    });
+  const prevUrl = () => {
+    if (prevPage) {
+      dispatch(allPokemons(prevPage));
+    } else {
+      return;
+    }
   };
 
   return (
     <div className="ui container">
       <h1 className="ui red header">PokeDex</h1>
       <Link to="/home/favorites">
-      <div
-        className="ui animated fade orange button right floated"
-        tabindex="0"
-      >
-        
-          <div class="visible content">Favorites</div>
-          <div class="hidden content">
-            <i class="star icon"></i>
+        <div
+          className="ui animated fade orange button right floated"
+          tabindex="0"
+        >
+          <div className="visible content">Favorites</div>
+          <div className="hidden content">
+            <i className="star icon"></i>
           </div>
-      </div>
+        </div>
       </Link>
-      {wait ? (
+      {loading ? (
         <div className="ui active inverted dimmer">
           <div className="ui large text loader">Wait Pokemon's Loading</div>
         </div>
@@ -79,7 +59,7 @@ const PokeData = () => {
             })}
           </div>
           <div className="ui grid container">
-            <a className="circular ui tiny icon red button " onClick={prevUrl}>
+            <a className="circular ui tiny icon red button" onClick={prevUrl}>
               <i className="left arrow icon"></i>
             </a>
             <a
@@ -94,6 +74,5 @@ const PokeData = () => {
     </div>
   );
 };
-
 
 export default PokeData;

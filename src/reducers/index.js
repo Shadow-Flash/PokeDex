@@ -7,10 +7,10 @@ import {
 } from "../actions/types";
 
 const defaultState = {
-  loading: true,
-  data: [],
-  nextUrl:"",
-  prevUrl:"",
+    data: [],
+    nextUrl:"",
+    prevUrl:"",
+    loading:true,
 };
 
 export default (state = defaultState, action) => {
@@ -21,7 +21,7 @@ export default (state = defaultState, action) => {
         data:action.payload.data,
         nextUrl:action.payload.next,
         prevUrl:action.payload.prev,
-        loading: false,
+        loading:action.payload.loading,
       };
     case DETAILS:
       return {};
