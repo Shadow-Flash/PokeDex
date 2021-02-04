@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 
 const PokeCard = ({ pokemon }) => {
@@ -19,4 +20,7 @@ const PokeCard = ({ pokemon }) => {
   );
 };
 
-export default PokeCard;
+const mapStateToProps = state => {
+    pokemon : state.pokemon
+}
+export default connect(mapStateToProps)(PokeCard);

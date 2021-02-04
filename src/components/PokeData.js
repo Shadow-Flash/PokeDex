@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
 import axios from "../api/poke";
 import PokeCard from "./PokeCard";
 
@@ -94,4 +95,9 @@ const PokeData = () => {
   );
 };
 
-export default PokeData;
+const mapStateToProps = state => {
+  return {
+    
+  }
+}
+export default connect(mapStateToProps)(PokeData);
