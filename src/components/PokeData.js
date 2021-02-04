@@ -95,9 +95,5 @@ const PokeData = () => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    
-  }
-}
-export default connect(mapStateToProps)(PokeData);
+
+export default PokeData;

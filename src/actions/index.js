@@ -1,3 +1,4 @@
+import axios from "../api/poke";
 import {
   ALL,
   DETAILS,
@@ -6,13 +7,27 @@ import {
   DELETE_FAVORITE,
 } from "./types";
 
-export default allPokemons = () => {
-  return {
+export const allPokemons = () => async (dispatch) => {
+  const res = await axios.get();
+  let nextPage = res.data.next;
+  let prevPage = res.data.previous;
+  let pokemonData = await Promise.all(
+    res.data.results.map(async (pokemon) => {
+      let pokemonRecord = await axios.get(pokemon.url);
+      return pokemonRecord.data;
+    })
+  );
+  dispatch({
     type: ALL,
-  };
+    payload: {
+      data: pokemonData,
+      next: nextPage,
+      prev: prevPage,
+    },
+  });
 };
 
-export default detailsOfPokemon = () => {
+export const detailsOfPokemon = () => {
   return {
     type: DETAILS,
   };

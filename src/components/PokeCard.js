@@ -12,7 +12,7 @@ const PokeCard = ({ pokemon }) => {
           </div>
           <div className="content">
             <i className="right floated star icon"></i>
-            <Link to="/home/{pokemon.name}/details" className="header">{pokemon.name.toUpperCase()}</Link>
+            <Link to="/home/pokemon.name/details" className="header">{pokemon.name.toUpperCase()}</Link>
           </div>
         </div>
       </div>
@@ -20,7 +20,5 @@ const PokeCard = ({ pokemon }) => {
   );
 };
 
-const mapStateToProps = state => {
-    pokemon : state.pokemon
-}
-export default connect(mapStateToProps)(PokeCard);
+
+export default PokeCard;
