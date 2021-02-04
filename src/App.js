@@ -11,7 +11,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/home" component={PokeData} exact />
             <Route path="/home/favorites" />
-            <Route path="/home/:pokemon_name/details" component={PokeDetails}/>
+            <Route path="/home/:name/details" component={PokeDetails}/>
           </Switch>
         </div>
     );

@@ -23,16 +23,6 @@ export default (state = defaultState, action) => {
         prevUrl:action.payload.prev,
         loading:action.payload.loading,
       };
-    case DETAILS:
-      return {
-          
-      };
-    case ADD_FAVORITE:
-      return {};
-    case DELETE_FAVORITE:
-      return {};
-    case SHOW_FAVORITES:
-      return {};
     default:
       return state;
   }

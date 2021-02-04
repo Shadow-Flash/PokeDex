@@ -5,11 +5,11 @@ import { allPokemons } from "../actions";
 import PokeCard from "./PokeCard";
 
 const PokeData = () => {
-  const pokemons = useSelector((state) => state.data);
+  const pokemons = useSelector((state) => state.pokeReducer.data);
   const dispatch = useDispatch();
-  const nextPage = useSelector((state) => state.nextUrl);
-  const prevPage = useSelector((state) => state.prevUrl);
-  const loading = useSelector((state) => state.loading);
+  const nextPage = useSelector((state) => state.pokeReducer.nextUrl);
+  const prevPage = useSelector((state) => state.pokeReducer.prevUrl);
+  const loading = useSelector((state) => state.pokeReducer.loading);
   useEffect(async () => {
     dispatch(
       allPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10")
