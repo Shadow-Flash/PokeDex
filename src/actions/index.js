@@ -32,10 +32,13 @@ export const allPokemons = (url) => async (dispatch) => {
   });
 };
 
-export const detailsOfPokemon = () => {
-  return {
+export const detailsOfPokemon = (name) => async dispatch => {
+  dispatch ({
     type: DETAILS,
-  };
+    payload:{loading:true},
+  });
+  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  console.log(res);
 };
 
 export const addToFavorites = () => {
