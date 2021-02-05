@@ -12,7 +12,7 @@ const defaultState = {
   loading:true,
 };
 
-export default (state = defaultState, action) => {
+const details = (state = defaultState, action) => {
   switch (action.type) {
     case DETAILS:
       return {
@@ -31,3 +31,5 @@ export default (state = defaultState, action) => {
         return state;
   }
 };
+
+export default details;

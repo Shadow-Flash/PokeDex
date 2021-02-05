@@ -9,7 +9,7 @@ const defaultState = {
     loading:true,
 };
 
-export default (state = defaultState, action) => {
+const poke = (state = defaultState, action) => {
   switch (action.type) {
     case ALL:
       return {
@@ -23,3 +23,5 @@ export default (state = defaultState, action) => {
       return state;
   }
 };
+
+export default poke;

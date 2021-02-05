@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 const PokeDetails = (props) => {
+  const addName = props.match.params.name;
   const dispatch = useDispatch();
   const name = useSelector((state) => state.details.name);
   const exp = useSelector((state) => state.details.experience);
@@ -18,10 +19,12 @@ const PokeDetails = (props) => {
   const PokeName = useSelector((state) => state.favorite.pokeName);
 
   useEffect(() => {
-    dispatch(detailsOfPokemon(props.match.params.name));
-  }, []);
+    const fetch = () => {
+      dispatch(detailsOfPokemon(addName));
+    };
+    fetch();
+  }, [dispatch,addName]);
 
-  const addName = props.match.params.name;
   const addToFavorite = () => {
     if (_.isEmpty(PokeName)) {
       dispatch(addToFavorites(addName));
@@ -44,15 +47,14 @@ const PokeDetails = (props) => {
       ) : (
         <>
           <div className="ui small images">
-            <img className="ui medium image" src={image.front_default} />
-            <img className="ui medium image" src={image.back_default} />
+            <img className="ui medium image" src={image.front_default} alt='' />
+            <img className="ui medium image" src={image.back_default} alt='' />
           </div>
           <div className="ui inverted segment">
             {_.includes(PokeName, addName) ? (
               <></>
             ) : (
-                
-                <div
+              <div
                 className="ui animated fade orange button right floated"
                 tabIndex="0"
                 onClick={addToFavorite}
@@ -62,7 +64,6 @@ const PokeDetails = (props) => {
                   <i className="ui star icon" />
                 </div>
               </div>
-              
             )}
 
             <Link to="/home">
@@ -84,19 +85,19 @@ const PokeDetails = (props) => {
             <div className="ui grid">
               <h3 className="ui red inverted header">Abilities : </h3>
               {ability.map((a) => (
-                <p>{a}</p>
+                <p key={a}>{a}</p>
               ))}
             </div>
             <div className="ui grid">
               <h3 className="ui red inverted header">Type : </h3>
               {type.map((t) => (
-                <p>{t}</p>
+                <p key={t}>{t}</p>
               ))}
             </div>
             <div className="ui grid">
               <h3 className="ui red inverted header">Moves : </h3>
               {moves.map((m) => (
-                <p>{m}</p>
+                <p key={m}>{m}</p>
               ))}
             </div>
             <div className="ui grid">

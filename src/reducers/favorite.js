@@ -6,7 +6,7 @@ const defaultState = {
   loading: true,
 };
 
-export default (state = defaultState, action) => {
+const favorite = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_FAVORITE:
       let index = state.data.findIndex(
@@ -35,3 +35,5 @@ export default (state = defaultState, action) => {
       return state;
   }
 };
+
+export default favorite;
