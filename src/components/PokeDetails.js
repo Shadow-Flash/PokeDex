@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsOfPokemon, addToFavorites } from "../actions";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import _ from "lodash";
+import { ADD_FAVORITE } from "../actions/types";
 
 const PokeDetails = (props) => {
   const dispatch = useDispatch();
@@ -14,13 +16,23 @@ const PokeDetails = (props) => {
   const image = useSelector((state) => state.details.image);
   const ability = useSelector((state) => state.details.abilities);
   const loading = useSelector((state) => state.details.loading);
+  const PokeName = useSelector((state) => state.favorite.pokeName);
+
   useEffect(() => {
     dispatch(detailsOfPokemon(props.match.params.name));
   }, []);
 
+  const addName = props.match.params.name;
   const addToFavorite = () => {
-      dispatch(addToFavorites(props.match.params.name));
-  }
+    if (_.isEmpty(PokeName)) {
+      dispatch(addToFavorites(addName));
+    } else {
+      let re = _.includes(PokeName, addName);
+      if (!re) {
+        dispatch(addToFavorites(addName));
+      }
+    }
+  };
 
   return (
     <div className="ui container">
@@ -28,7 +40,7 @@ const PokeDetails = (props) => {
       <h1 className="ui red header">{name.toUpperCase()}</h1>
       {loading ? (
         <div className="ui active inverted dimmer">
-          <div className="ui large text loader">Wait {name} Loading</div>
+          <div className="ui large text loader">Wait {name} Loading...</div>
         </div>
       ) : (
         <>
@@ -37,6 +49,34 @@ const PokeDetails = (props) => {
             <img className="ui medium image" src={image.back_default} />
           </div>
           <div className="ui inverted segment">
+            {_.includes(PokeName, addName) ? (
+              <></>
+            ) : (
+                
+                <div
+                className="ui animated fade orange button right floated"
+                tabIndex="0"
+                onClick={addToFavorite}
+              >
+                <div className="visible content">Add to Favorite</div>
+                <div className="hidden content">
+                  <i className="ui star icon" />
+                </div>
+              </div>
+              
+            )}
+
+            <Link to="/home">
+              <div
+                className="ui animated blue button right floated"
+                tabIndex="0"
+              >
+                <div className="visible content">Back</div>
+                <div className="hidden content">
+                  <i className="left arrow icon"></i>
+                </div>
+              </div>
+            </Link>
             <p></p>
             <div className="ui grid">
               <h3 className="ui red inverted header">Experience : </h3>
@@ -69,20 +109,6 @@ const PokeDetails = (props) => {
               <p>{weight}</p>
             </div>
           </div>
-          <div className="ui animated fade orange button" tabIndex="0">
-            <div className="visible content" onClick={addToFavorite}>Add to Favorite</div>
-            <div className="hidden content">
-              <i className="ui star icon" onClick={addToFavorite}/>
-            </div>
-          </div>
-          <Link to="/home">
-            <div className="ui animated blue button" tabIndex="0">
-              <div className="visible content">Back</div>
-              <div className="hidden content">
-                <i className="left arrow icon"></i>
-              </div>
-            </div>
-          </Link>
         </>
       )}
     </div>

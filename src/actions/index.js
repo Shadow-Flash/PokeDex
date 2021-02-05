@@ -63,6 +63,7 @@ export const addToFavorites = (name) => async (dispatch) => {
     payload: {
       data: res.data,
       loading: false,
+      pokeName:res.data.name,
     },
   });
 };
