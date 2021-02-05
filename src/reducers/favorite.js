@@ -1,9 +1,8 @@
-import { ADD_FAVORITE } from "../actions/types";
-import _ from "lodash";
+import { ADD_FAVORITE, DELETE_FAVORITE } from "../actions/types";
 
 const defaultState = {
   data: [],
-  pokeName:[],
+  pokeName: [],
   loading: true,
 };
 
@@ -17,11 +16,20 @@ export default (state = defaultState, action) => {
         return {
           ...state,
           data: [...state.data, action.payload.data],
-          pokeName:[...state.pokeName,action.payload.pokeName],
+          pokeName: [...state.pokeName, action.payload.pokeName],
           loading: action.payload.loading,
         };
       return {
         ...state,
+      };
+
+    case DELETE_FAVORITE:
+      const filterData = state.data.filter((del) => del.id !== action.payload.id);
+      const filterName = state.pokeName.filter(del => del !== action.payload.pokeName);
+      return {
+        ...state,
+        data: filterData,
+        pokeName: filterName
       };
     default:
       return state;

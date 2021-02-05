@@ -53,8 +53,8 @@ const PokeData = () => {
       ) : (
         <>
           <div className="ui two column grid">
-            {pokemons.map((pokemon, id) => {
-              return <PokeCard key={id++} pokemon={pokemon} />;
+            {pokemons.map((pokemon) => {
+              return <PokeCard key={pokemon.id} pokemon={pokemon} />;
             })}
           </div>
           <div className="ui grid container">

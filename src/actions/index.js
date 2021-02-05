@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  ALL,
-  DETAILS,
-  ADD_FAVORITE,
-  DELETE_FAVORITE,
-} from "./types";
+import { ALL, DETAILS, ADD_FAVORITE, DELETE_FAVORITE } from "./types";
 
 export const allPokemons = (url) => async (dispatch) => {
   dispatch({
@@ -62,14 +57,14 @@ export const addToFavorites = (name) => async (dispatch) => {
     payload: {
       data: res.data,
       loading: false,
-      pokeName:res.data.name,
+      pokeName: res.data.name,
     },
   });
 };
 
-
-export const deleteFromFavorites = () => {
-  return {
+export const deleteFromFavorites = (id, name) => async (dispatch) => {
+  dispatch({
     type: DELETE_FAVORITE,
-  };
+    payload: { id: id, pokeName: name },
+  });
 };

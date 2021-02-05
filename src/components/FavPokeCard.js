@@ -8,8 +8,8 @@ const FavPokeCard = () => {
     <div className="ui container">
       <h1 className="ui orange header">Your Favorites</h1>
       <div className="ui two column grid">
-        {pokemons.map((pokemon, id) => {
-          return <PokeCardFav key={id} pokemon={pokemon} />;
+        {pokemons.map((pokemon) => {
+          return <PokeCardFav key={pokemon.id} pokemon={pokemon} />;
         })}
       </div>
       <div className='ui grid'>

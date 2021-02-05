@@ -1,9 +1,5 @@
 import {
-  ALL,
-  DETAILS,
-  SHOW_FAVORITES,
-  ADD_FAVORITE,
-  DELETE_FAVORITE,
+  ALL
 } from "../actions/types";
 
 const defaultState = {
