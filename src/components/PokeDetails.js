@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { detailsOfPokemon, addToFavorites } from "../actions";
 import { Link } from "react-router-dom";
 import _ from "lodash";
-import { ADD_FAVORITE } from "../actions/types";
 
 const PokeDetails = (props) => {
   const dispatch = useDispatch();

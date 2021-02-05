@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   ALL,
   DETAILS,
-  SHOW_FAVORITES,
   ADD_FAVORITE,
   DELETE_FAVORITE,
 } from "./types";
@@ -68,11 +67,6 @@ export const addToFavorites = (name) => async (dispatch) => {
   });
 };
 
-export const showMyFavorites = () => {
-  return {
-    type: SHOW_FAVORITES,
-  };
-};
 
 export const deleteFromFavorites = () => {
   return {
