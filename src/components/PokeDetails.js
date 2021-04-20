@@ -66,7 +66,7 @@ const PokeDetails = (props) => {
               </div>
             )}
 
-            <Link to="/home">
+            <Link to="/">
               <div
                 className="ui animated blue button right floated"
                 tabIndex="0"

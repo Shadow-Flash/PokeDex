@@ -21,7 +21,7 @@ const PokeCard = ({ pokemon }) => {
             <img src={pokemon.sprites.front_default} alt="" />
           </div>
           <div className="content">
-            <Link to={`/home/${pokemon.name}/details`} className="header">
+            <Link to={`/${pokemon.name}/details`} className="header">
               {pokemon.name.toUpperCase()}
             </Link>
           </div>

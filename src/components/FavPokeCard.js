@@ -13,7 +13,7 @@ const FavPokeCard = () => {
         })}
       </div>
       <div className='ui grid'>
-        <Link to="/home">
+        <Link to="/">
           <div className="ui animated blue button" tabIndex="0">
             <div className="visible content">Back</div>
             <div className="hidden content">

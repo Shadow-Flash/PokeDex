@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PokeCard = ({ pokemon }) => {
   return (
     <div className="column">
-      <Link to={`/home/${pokemon.name}/details`} className="header">
+      <Link to={`/${pokemon.name}/details`} className="header">
         <div className="ui link cards">
           <div className="card">
             <div className="ui image">

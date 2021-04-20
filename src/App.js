@@ -10,9 +10,9 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <Switch>
-          <Route path="/home" component={PokeData} exact />
-          <Route path="/home/favorites" component={FavPokeCard} />
-          <Route path="/home/:name/details" component={PokeDetails} />
+          <Route path="/" component={PokeData} exact />
+          <Route path="/favorites" component={FavPokeCard} />
+          <Route path="/:name/details" component={PokeDetails} />
         </Switch>
       </div>
     );

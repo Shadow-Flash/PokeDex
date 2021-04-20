@@ -41,7 +41,7 @@ const PokeData = () => {
   return (
     <div className="ui container">
       <h1 className="ui red header">PokeDex</h1>
-      <Link to="/home/favorites">
+      <Link to="/favorites">
         <div
           className="ui animated fade orange button right floated"
           tabIndex="0"
